@@ -1,27 +1,7 @@
-<script language="JavaScript">
-
-var nl = getNewLine()
-
-function getNewLine() {
-	var agent = navigator.userAgent
-
-	if (agent.indexOf("Win") >= 0)
-		return "\r\n"
-	else
-		if (agent.indexOf("Mac") >= 0)
-			return "\r"
-
- 	return "\r"
-
-}
-
-pagecode = '<?php
-    header(\'Access-Control-Allow-Origin: *\');
-    // Token Contract Address
-    $contract = \'0xe5d3cbee3c4dacf69f7b35e0d1c5170fc92f3843\';
-    // Ethplorer API URL
-    $url = \'https://api.ethplorer.io/getTokenInfo/\'.$contract.\'?apiKey=freekey\';
-    // Curl Ethplorer
+<?php
+    header('Access-Control-Allow-Origin: *');
+    $contract = '0xe5d3cbee3c4dacf69f7b35e0d1c5170fc92f3843';
+    $url = 'https://api.ethplorer.io/getTokenInfo/'.$contract.'?apiKey=freekey';
     $ch = curl_init();
     $timeout = 60;
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -36,11 +16,7 @@ pagecode = '<?php
     $supply = substr($values->totalSupply, 0, 8);
 
     $burned = 200 - $supply;
-?>'
-
-document.write(pagecode);
-
-</script>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
